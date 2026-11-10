@@ -1,0 +1,871 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Guide Psychologie Business</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Concept : guide de terrain en une colonne, barre de navigation collante, système en 5 étapes, fiches de livres en grille, scripts à copier, défi à cocher. Vert, jaune et rouge du drapeau togolais, utilisés avec retenue. */
+:root{
+  --bg:#F2F5F1; --surface:#FFFFFF; --surface-2:#E5EDE7; --fg:#14221C; --muted:#4A5F55; --line:#C9D7CD;
+  --green:#0B6B4B; --on-green:#FFFFFF; --green-soft:#D6EADC;
+  --yellow:#F5C400; --yellow-soft:#FBF0BF;
+  --red:#B3261E; --red-soft:#F9DFDC;
+  --f-display:"Bricolage Grotesque","Inter",system-ui,sans-serif;
+  --f-body:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  --radius:8px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0C1612; --surface:#13211B; --surface-2:#1B2D25; --fg:#E6EFEA; --muted:#9DB3A8; --line:#2A4036;
+    --green:#52C28F; --on-green:#0C1612; --green-soft:#17372B;
+    --yellow:#F2C94C; --yellow-soft:#3A3210;
+    --red:#F08A82; --red-soft:#3D1A17;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0C1612; --surface:#13211B; --surface-2:#1B2D25; --fg:#E6EFEA; --muted:#9DB3A8; --line:#2A4036;
+  --green:#52C28F; --on-green:#0C1612; --green-soft:#17372B;
+  --yellow:#F2C94C; --yellow-soft:#3A3210;
+  --red:#F08A82; --red-soft:#3D1A17;
+  color-scheme:dark;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 16px/1.55 var(--f-body);-webkit-text-size-adjust:100%}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:40;background:var(--bg)}
+.inner{max-width:1040px;margin-inline:auto;padding-inline:max(16px,env(safe-area-inset-left,0px)) max(16px,env(safe-area-inset-right,0px))}
+:focus-visible{outline:3px solid var(--green);outline-offset:2px}
+a{color:var(--green)}
+h1,h2,h3,h4{text-wrap:balance}
+
+/* hero */
+.hero{padding-block:34px 26px}
+.flag{display:flex;gap:4px;margin-bottom:14px}
+.flag i{display:block;width:26px;height:6px;border-radius:2px}
+.flag i:nth-child(1){background:var(--green)}
+.flag i:nth-child(2){background:var(--yellow)}
+.flag i:nth-child(3){background:var(--red)}
+.kicker{margin:0;font:500 .75rem/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--green)}
+h1{font:800 clamp(2rem,6.4vw,3.2rem)/1.04 var(--f-display);letter-spacing:-.02em;margin:12px 0 14px}
+.lead{max-width:62ch;margin:0 0 18px;font-size:1.06rem;color:var(--muted)}
+.facts{list-style:none;margin:0 0 16px;padding:0;display:flex;flex-wrap:wrap;gap:6px 22px;font-size:.95rem}
+.facts b{font:800 1.3rem var(--f-display);margin-right:5px}
+.how{margin:0;padding-left:20px;max-width:62ch;color:var(--muted);font-size:.95rem}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-block:1px solid var(--line)}
+.nav .inner{display:flex;align-items:center;gap:10px;padding-block:8px}
+.links{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0}
+.links::-webkit-scrollbar{display:none}
+.links a,.pill{flex:none;padding:7px 12px;border-radius:999px;text-decoration:none;font-weight:500;font-size:.9rem;border:1px solid transparent;color:var(--fg);white-space:nowrap}
+.links a:hover{background:var(--surface-2)}
+.links a.on{background:var(--green);color:var(--on-green)}
+.pill{border-color:var(--green);color:var(--green);font:500 .82rem var(--f-mono);font-variant-numeric:tabular-nums}
+
+/* sections */
+main section{padding-block:38px 6px;scroll-margin-top:calc(64px + env(safe-area-inset-top,0px))}
+h2{font:800 clamp(1.5rem,4.2vw,2.1rem)/1.12 var(--f-display);letter-spacing:-.015em;margin:0 0 8px}
+.sub{color:var(--muted);max-width:64ch;margin:0 0 20px}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+.grid>*{min-width:0}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+.card h3{font:700 1.15rem/1.25 var(--f-display);margin:0 0 2px}
+.card p{margin:0}
+ul.tech{margin:12px 0 0;padding-left:18px;display:grid;gap:8px}
+ul.tech li::marker{color:var(--green)}
+.src{display:inline-block;font:500 .72rem/1.5 var(--f-mono);color:var(--green);background:var(--green-soft);padding:0 6px;border-radius:4px;margin-left:2px;vertical-align:baseline}
+.src.out{color:var(--fg);background:var(--yellow-soft)}
+.by{color:var(--muted);font-size:.88rem;margin-top:2px}
+.idea{margin-top:10px!important}
+.say,.warn{margin-top:14px;padding:10px 12px;border-radius:var(--radius);font-size:.93rem}
+.say{background:var(--yellow-soft)}
+.warn{background:var(--red-soft)}
+.lab{display:block;font:500 .68rem/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px;color:var(--muted)}
+
+/* systeme */
+.steps{counter-reset:none}
+.step h3{display:flex;align-items:center;gap:10px}
+.snum{flex:none;display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--green);color:var(--on-green);font:700 .9rem var(--f-display)}
+.stag{color:var(--muted);font-size:.92rem;margin-top:6px!important}
+.mapwrap{margin-top:30px}
+.mapwrap h3{font:700 1.25rem var(--f-display);margin:0 0 12px}
+.root{display:block;width:max-content;max-width:100%;margin:0 auto 14px;background:var(--green);color:var(--on-green);font:700 1.05rem var(--f-display);padding:10px 20px;border-radius:999px;position:relative;text-align:center}
+.root::after{content:"";position:absolute;left:50%;top:100%;width:2px;height:14px;background:var(--line)}
+.branches{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr))}
+.branch{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px;min-width:0}
+.branch h4{margin:0 0 8px;font:700 1rem var(--f-display);color:var(--green)}
+.branch ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.branch li{font-size:.92rem;color:var(--muted)}
+.branch li b{color:var(--fg);font-weight:600}
+
+/* scripts */
+.sch{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.btn{font:600 .85rem var(--f-body);padding:7px 14px;border-radius:999px;border:1px solid var(--green);background:transparent;color:var(--green);cursor:pointer;flex:none}
+.btn:hover{background:var(--green-soft)}
+.btn.dng{border-color:var(--red);color:var(--red)}
+.btn.dng:hover{background:var(--red-soft)}
+.btn.pri{background:var(--green);color:var(--on-green)}
+.script{margin-top:10px!important;padding:10px 12px;background:var(--surface-2);border-radius:var(--radius);white-space:pre-wrap;font-size:.95rem}
+.note{margin-top:8px!important;color:var(--muted);font-size:.88rem}
+.srow{margin-top:6px!important}
+ol.ladder{margin:12px 0 0;padding-left:20px;display:grid;gap:6px}
+
+/* table */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:680px;font-size:.93rem}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+th{font:500 .7rem var(--f-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+
+/* defi */
+.dash{margin:16px 0 4px;display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+.dash>*{min-width:0}
+.bar{height:10px;border-radius:999px;background:var(--surface-2);overflow:hidden;margin:10px 0 12px}
+.bar span{display:block;height:100%;width:0;background:var(--green);transition:width .3s}
+.stats{display:flex;flex-wrap:wrap;gap:6px 22px;font-size:.92rem;color:var(--muted)}
+.stats b{color:var(--fg);font:800 1.15rem var(--f-display);margin-right:4px;font-variant-numeric:tabular-nums}
+.sync{margin-top:10px!important;font-size:.82rem;color:var(--muted)}
+.fear{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:flex-end}
+.fear label{display:grid;gap:4px;font-size:.88rem;color:var(--muted)}
+input[type=number]{width:84px;padding:8px 10px;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg);color:var(--fg);font:inherit}
+.delta{margin-top:10px!important;font-size:.9rem;min-height:1.4em}
+.week{margin-top:26px}
+.whead{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 16px;margin-bottom:4px}
+.whead h3{font:700 1.2rem var(--f-display);margin:0}
+.wcount{font:500 .8rem var(--f-mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.wgoal{color:var(--muted);margin:0 0 10px;max-width:64ch}
+ol.days{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.day{display:grid;grid-template-columns:38px minmax(0,1fr) auto;gap:6px 12px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:12px}
+.day.done{background:var(--green-soft);border-color:var(--green)}
+.dnum{font:600 .85rem var(--f-mono);color:var(--green);padding-top:1px}
+.act{display:grid;grid-template-columns:24px minmax(0,1fr);gap:10px;cursor:pointer}
+.act input,.rt input{width:22px;height:22px;margin:0;accent-color:var(--green)}
+.act b{display:block;font-weight:600}
+.srcs{display:block;margin-top:5px}
+.rt{display:flex;align-items:center;gap:8px;font-size:.84rem;color:var(--muted);cursor:pointer}
+.nlab{display:block;margin:12px 0 4px;font-size:.88rem;color:var(--muted)}
+textarea{width:100%;min-height:84px;resize:vertical;padding:10px 12px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);color:var(--fg);font:inherit}
+.reset{margin-top:30px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.foot{padding-block:36px 56px;color:var(--muted);font-size:.88rem;max-width:70ch}
+@media (max-width:560px){
+  .day{grid-template-columns:34px minmax(0,1fr)}
+  .rt{grid-column:2}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+
+<header class="hero">
+  <div class="inner">
+    <div class="flag" aria-hidden="true"><i></i><i></i><i></i></div>
+    <p class="kicker">8 livres, un seul guide</p>
+    <h1>Influencer, négocier, parler sans peur</h1>
+    <p class="lead">L'essentiel de 8 livres de psychologie, réduit à ce que tu peux appliquer dès cette semaine : un système en 5 étapes, des techniques avec leurs sources, des phrases prêtes à l'emploi et un défi de 30 jours à cocher.</p>
+    <ul class="facts">
+      <li><b>8</b>livres</li>
+      <li><b>5</b>étapes</li>
+      <li><b>8</b>scripts</li>
+      <li><b>30</b>jours</li>
+    </ul>
+    <ol class="how">
+      <li>Lis le système et la carte mentale (5 minutes).</li>
+      <li>Garde les scripts sous la main.</li>
+      <li>Lance le défi : une action par jour, ta progression est enregistrée.</li>
+    </ol>
+  </div>
+</header>
+
+<nav class="nav" aria-label="Sections">
+  <div class="inner">
+    <div class="links">
+      <a href="#systeme" data-t="systeme">Système</a>
+      <a href="#livres" data-t="livres">Livres</a>
+      <a href="#parler" data-t="parler">Parler sans peur</a>
+      <a href="#scripts" data-t="scripts">Scripts</a>
+      <a href="#defi" data-t="defi">Défi 30 jours</a>
+      <a href="#refs" data-t="refs">Références</a>
+    </div>
+    <a class="pill" id="pill" href="#defi" data-t="defi" aria-label="Progression du défi">0/60</a>
+  </div>
+</nav>
+
+<main class="inner">
+
+<section id="systeme">
+  <h2>Le système : les 5 C</h2>
+  <p class="sub">Pour toute conversation importante (client, négociation, prise de parole), suis cet ordre : Calme, Comprendre, Cadrer, Communiquer, Conclure. Chaque technique indique le livre et le chapitre.</p>
+  <div class="grid steps">
+    <article class="card step">
+      <h3><span class="snum">1</span>Calme</h3>
+      <p class="stag">Avant de parler, reprends la main sur toi.</p>
+      <ul class="tech">
+        <li>Respire lentement et nomme ton émotion : « je suis tendu ». <span class="src">Goleman · ch.2 et 4</span></li>
+        <li>Passe en mode réfléchi : « Qu'est-ce que je veux vraiment de cette conversation ? » <span class="src">Kahneman · Partie I</span></li>
+        <li>Parle depuis l'Adulte : faits, options, objectif. <span class="src">Berne · Partie I</span></li>
+      </ul>
+    </article>
+    <article class="card step">
+      <h3><span class="snum">2</span>Comprendre</h3>
+      <p class="stag">Écoute avant de convaincre.</p>
+      <ul class="tech">
+        <li>Pose des questions ouvertes, laisse l'autre parler, montre un intérêt sincère. <span class="src">Carnegie · Partie II</span></li>
+        <li>Reformule : « Si je comprends bien… » <span class="src">Goleman · ch.7</span></li>
+        <li>Observe le ton et le visage sans conclure trop vite, puis vérifie par une question. <span class="src">Gladwell · ch.7</span></li>
+      </ul>
+    </article>
+    <article class="card step">
+      <h3><span class="snum">3</span>Cadrer</h3>
+      <p class="stag">Choisis le terrain de la discussion.</p>
+      <ul class="tech">
+        <li>Donne le premier chiffre quand tu connais bien la valeur : il sert d'ancre. <span class="src">Kahneman · ch.11</span></li>
+        <li>Présente ce que coûte de ne rien faire : une perte pèse plus qu'un gain. <span class="src">Kahneman · ch.26 et 34</span></li>
+        <li>Choisis ton levier : réciprocité, preuve sociale, autorité, rareté vraie, cohérence, sympathie. <span class="src">Cialdini · ch.2 à 7</span></li>
+      </ul>
+    </article>
+    <article class="card step">
+      <h3><span class="snum">4</span>Communiquer</h3>
+      <p class="stag">Fais passer un message qui reste.</p>
+      <ul class="tech">
+        <li>Une idée simple, avec une image ou un chiffre concret. <span class="src">Heath · ch.1 et 3</span></li>
+        <li>Une courte histoire avant/après. <span class="src">Heath · ch.6</span></li>
+        <li>Parle de ce que l'autre veut, pas de ce que tu veux vendre. <span class="src">Carnegie · Parties II et III</span></li>
+      </ul>
+    </article>
+    <article class="card step">
+      <h3><span class="snum">5</span>Conclure</h3>
+      <p class="stag">Obtiens un petit engagement et protège ta réputation.</p>
+      <ul class="tech">
+        <li>Demande un petit pas précis, confirmé par écrit. <span class="src">Cialdini · ch.3</span></li>
+        <li>Dis ton prix, puis tais-toi quelques secondes. <span class="src">Greene · loi 4</span></li>
+        <li>Tiens parole : ta réputation est ton capital. <span class="src">Greene · loi 5</span></li>
+      </ul>
+    </article>
+  </div>
+
+  <div class="mapwrap">
+    <h3>Carte mentale</h3>
+    <span class="root">Influencer avec éthique</span>
+    <div class="branches">
+      <div class="branch">
+        <h4>Se maîtriser</h4>
+        <ul>
+          <li><b>Goleman</b> : émotions, pause, optimisme</li>
+          <li><b>Kahneman</b> : réflexe contre réflexion, biais</li>
+          <li><b>Berne</b> : états du moi, viser l'Adulte</li>
+        </ul>
+      </div>
+      <div class="branch">
+        <h4>Comprendre les autres</h4>
+        <ul>
+          <li><b>Carnegie</b> : intérêt sincère, écoute, prénom</li>
+          <li><b>Gladwell</b> : premières secondes, signaux</li>
+          <li><b>Berne</b> : jeux répétitifs, signes de reconnaissance</li>
+        </ul>
+      </div>
+      <div class="branch">
+        <h4>Persuader et négocier</h4>
+        <ul>
+          <li><b>Cialdini</b> : 6 leviers d'influence</li>
+          <li><b>Heath</b> : message simple, concret, en histoire</li>
+          <li><b>Kahneman</b> : ancrage et cadrage</li>
+          <li><b>Greene</b> : réputation, silence, timing</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="livres">
+  <h2>Les 8 livres en bref</h2>
+  <p class="sub">Pour chacun : l'idée centrale, les techniques à retenir avec leur source, et une phrase à dire.</p>
+  <div class="grid">
+
+    <article class="card">
+      <h3>Les deux vitesses de la pensée</h3>
+      <p class="by">Daniel Kahneman · <i>Thinking, Fast and Slow</i>, 2011</p>
+      <p class="idea">Le cerveau a deux modes : le Système 1, rapide et automatique, et le Système 2, lent et réfléchi. Le Système 1 se trompe de façon prévisible. Tu peux t'en servir et t'en protéger.</p>
+      <ul class="tech">
+        <li>Ancrage : le premier chiffre influence tout. Si l'autre ancre en premier, pense à son offre minimale et à ce qu'il perd s'il ne conclut pas. <span class="src">ch.11</span></li>
+        <li>Aversion à la perte et cadrage : une perte pèse plus qu'un gain équivalent. <span class="src">ch.26 et 34</span></li>
+        <li>Facilité cognitive : un message simple et lisible paraît plus crédible. <span class="src">ch.5</span></li>
+        <li>Pour tes projets : vue extérieure et pré-mortem (imagine l'échec et cherche pourquoi). <span class="src">ch.23 et 24</span></li>
+      </ul>
+      <div class="say"><span class="lab">À dire</span>« Une entreprise sans présence en ligne perd chaque semaine des clients qui la cherchent. Voici comment arrêter cette perte. »</div>
+    </article>
+
+    <article class="card">
+      <h3>Influence et manipulation</h3>
+      <p class="by">Robert Cialdini · <i>Influence</i>, 1984</p>
+      <p class="idea">Six leviers poussent les gens à dire oui, souvent par réflexe. Utilise-les pour aider l'autre à décider, et reconnais-les quand on les utilise sur toi.</p>
+      <ul class="tech">
+        <li>Réciprocité : donne d'abord (conseil, mini-diagnostic). <span class="src">ch.2</span></li>
+        <li>Engagement et cohérence : un petit oui, de préférence écrit, mène à un plus grand. <span class="src">ch.3</span></li>
+        <li>Preuve sociale : montre ce que font des gens semblables à ton client. <span class="src">ch.4</span></li>
+        <li>Sympathie, autorité, rareté : ce qui est vrai seulement. <span class="src">ch.5, 6, 7</span></li>
+      </ul>
+      <div class="say"><span class="lab">À dire</span>« Avant de parler de prix, je vous offre un diagnostic de 15 minutes de votre présence en ligne. »</div>
+      <div class="warn"><span class="lab">Prudence</span>Les éditions récentes ajoutent un 7e levier, l'unité (appartenir au même groupe). Chaque levier doit reposer sur du vrai : vraie rareté, vrais témoignages.</div>
+    </article>
+
+    <article class="card">
+      <h3>Comment se faire des amis</h3>
+      <p class="by">Dale Carnegie · <i>How to Win Friends and Influence People</i>, 1936</p>
+      <p class="idea">Les gens agissent selon leurs envies et leur besoin d'être estimés. On gagne leur coopération par l'intérêt sincère, pas par la critique.</p>
+      <ul class="tech">
+        <li>Ne critique pas, ne condamne pas, ne te plains pas. <span class="src">Partie I</span></li>
+        <li>Intéresse-toi vraiment aux autres : sourire, prénom, écoute, leurs sujets. <span class="src">Partie II</span></li>
+        <li>Évite la dispute, commence amicalement, fais dire « oui », reconnais vite tes erreurs. <span class="src">Partie III</span></li>
+        <li>Leader : commence par un éloge sincère, pose des questions plutôt que des ordres. <span class="src">Partie IV</span></li>
+      </ul>
+      <div class="say"><span class="lab">À dire</span>« Votre boutique a déjà une clientèle fidèle, c'est un vrai atout. Qu'est-ce qui vous prend le plus de temps chaque jour ? »</div>
+    </article>
+
+    <article class="card">
+      <h3>Ces idées qui collent</h3>
+      <p class="by">Chip et Dan Heath · <i>Made to Stick</i>, 2007</p>
+      <p class="idea">Les idées qui restent ont 6 qualités (SUCCES en anglais). L'ennemi : la malédiction du savoir, quand tu connais tellement ton sujet que tu n'arrives plus à parler simplement. <span class="src">Introduction</span></p>
+      <ul class="tech">
+        <li>Simple : trouve l'idée centrale, une seule. <span class="src">ch.1</span></li>
+        <li>Inattendu : surprends et crée la curiosité. <span class="src">ch.2</span></li>
+        <li>Concret : images, chiffres, exemples. <span class="src">ch.3</span></li>
+        <li>Crédible, Émotionnel : un détail vrai, une personne plutôt qu'une statistique. <span class="src">ch.4 et 5</span></li>
+        <li>Histoires : un avant/après qui se raconte. <span class="src">ch.6</span></li>
+      </ul>
+      <div class="say"><span class="lab">À dire</span>Au lieu de « Nous digitalisons votre activité » : « Votre client commande à 22 h depuis son téléphone, et vous vous réveillez avec 5 commandes. »</div>
+    </article>
+
+    <article class="card">
+      <h3>Les 48 lois du pouvoir</h3>
+      <p class="by">Robert Greene · <i>The 48 Laws of Power</i>, 1998</p>
+      <p class="idea">Un manuel sur le pouvoir dans les relations. Beaucoup de lois sont manipulatrices : garde celles qui construisent ta réputation, et lis les autres pour reconnaître ce que d'autres peuvent te faire.</p>
+      <ul class="tech">
+        <li>Dire moins qu'il n'en faut, accepter le silence. <span class="src">loi 4</span></li>
+        <li>La réputation se garde avec soin. <span class="src">loi 5</span></li>
+        <li>Gagner par les actes, pas par la dispute. <span class="src">loi 9</span></li>
+        <li>Demander de l'aide en parlant de l'intérêt de l'autre. <span class="src">loi 13</span></li>
+        <li>Agir avec audace une fois la décision prise. <span class="src">loi 28</span></li>
+        <li>Planifier jusqu'au bout, soigner le timing. <span class="src">lois 29 et 35</span></li>
+      </ul>
+      <div class="say"><span class="lab">À dire</span>« Le projet complet est à [ton prix]. » Puis tais-toi 3 secondes.</div>
+      <div class="warn"><span class="lab">Prudence</span>Les lois 3 (cacher ses intentions), 12 (honnêteté choisie), 14 (faux ami), 15 (écraser l'ennemi) et 17 (rester imprévisible) abîment la confiance. Dans un petit marché où tout se sait, elles se retournent contre toi. Lis-les pour les repérer chez les autres.</div>
+    </article>
+
+    <article class="card">
+      <h3>Blink : la force de l'intuition</h3>
+      <p class="by">Malcolm Gladwell · <i>Blink</i>, 2005</p>
+      <p class="idea">Le cerveau juge en quelques secondes à partir de très peu d'informations (les « tranches fines »). C'est puissant avec de l'expérience, mais piégé par les préjugés et la pression.</p>
+      <ul class="tech">
+        <li>Soigne les premières secondes : tenue, voix, première phrase préparée. <span class="src">ch.1</span></li>
+        <li>Méfie-toi des jugements rapides basés sur l'apparence. <span class="src">ch.3</span></li>
+        <li>Un client qui dit aimer un produit en test n'agira pas forcément ainsi : observe ce qu'il fait. <span class="src">ch.5</span></li>
+        <li>Sous stress, le jugement se dégrade : ralentis. <span class="src">ch.6</span></li>
+        <li>Les visages donnent des indices, vérifie par une question. <span class="src">ch.7</span></li>
+      </ul>
+      <div class="say"><span class="lab">À dire</span>« J'ai l'impression que le prix vous inquiète. Est-ce que je me trompe ? »</div>
+    </article>
+
+    <article class="card">
+      <h3>Des jeux et des hommes</h3>
+      <p class="by">Eric Berne · <i>Games People Play</i>, 1964</p>
+      <p class="idea">On parle depuis l'un de 3 états du moi : Parent, Adulte ou Enfant. Beaucoup de conversations répètent des « jeux » : des scénarios cachés qui finissent toujours par la même émotion désagréable.</p>
+      <ul class="tech">
+        <li>Repère l'état du moi : « tu dois » (Parent), « j'ai peur, je veux » (Enfant), faits et options (Adulte). Vise Adulte à Adulte. <span class="src">Partie I</span></li>
+        <li>Donne des signes de reconnaissance positifs : salut, merci, regard. <span class="src">Partie I</span></li>
+        <li>Jeu « Pourquoi pas… — Oui, mais » : l'autre rejette chaque solution. Arrête de proposer, demande son avis. <span class="src">Partie II</span></li>
+        <li>Pour sortir d'un jeu, ne joue pas le rôle attendu. <span class="src">Parties I à III</span></li>
+      </ul>
+      <div class="say"><span class="lab">À dire</span>Client : « Oui, mais ça ne marchera pas chez nous. » Toi : « Qu'est-ce qui le rendrait utilisable chez vous ? »</div>
+    </article>
+
+    <article class="card">
+      <h3>L'intelligence émotionnelle</h3>
+      <p class="by">Daniel Goleman · <i>Emotional Intelligence</i>, 1995</p>
+      <p class="idea">La réussite dépend autant de la gestion des émotions que du QI. Cinq compétences : conscience de soi, maîtrise de soi, motivation, empathie, aptitudes sociales.</p>
+      <ul class="tech">
+        <li>Sous menace, l'émotion prend le dessus avant la pensée : fais une pause avant de répondre. <span class="src">ch.2</span></li>
+        <li>Nommer ce que tu ressens est le premier pas pour le gérer. <span class="src">ch.4</span></li>
+        <li>Maîtrise de soi et optimisme : savoir attendre, voir un échec comme réparable. <span class="src">ch.5 et 6</span></li>
+        <li>Empathie : lis le ton, le visage, la posture. <span class="src">ch.7 et 8</span></li>
+        <li>Un tempérament timide peut évoluer avec l'expérience. <span class="src">ch.14</span></li>
+      </ul>
+      <div class="say"><span class="lab">À dire (à toi-même)</span>« Je suis tendu. Je respire, je prends 5 secondes, puis je réponds. »</div>
+    </article>
+
+  </div>
+</section>
+
+<section id="parler">
+  <h2>Parler sans peur</h2>
+  <p class="sub">La peur de parler est normale. Elle baisse avec la préparation et la pratique, pas avec l'attente. Voici 7 gestes tirés des livres, puis une échelle pour t'entraîner.</p>
+  <div class="grid">
+    <article class="card">
+      <h3>Prépare tes 10 premières secondes</h3>
+      <p class="idea">Apprends ta première phrase par cœur. Une fois lancé, c'est plus facile de continuer. <span class="src">Gladwell · ch.1</span></p>
+    </article>
+    <article class="card">
+      <h3>Une seule idée à faire passer</h3>
+      <p class="idea">Résume ton message en une phrase. Moins à retenir, moins de panique à gérer. <span class="src">Heath · ch.1</span></p>
+    </article>
+    <article class="card">
+      <h3>Mets l'attention sur l'autre</h3>
+      <p class="idea">Pose une question et écoute vraiment. Ce que tu penses de toi passe au second plan. <span class="src">Carnegie · Partie II</span></p>
+    </article>
+    <article class="card">
+      <h3>Calme le corps d'abord</h3>
+      <p class="idea">Expire plus longtemps que tu n'inspires, baisse les épaules, parle plus lentement. Quand le cœur s'emballe, le jugement se dégrade. <span class="src">Goleman · ch.2</span> <span class="src">Gladwell · ch.6</span> <span class="src out">Respiration : hors livres</span></p>
+    </article>
+    <article class="card">
+      <h3>Qui parle en moi ?</h3>
+      <p class="idea">Si c'est l'Enfant qui a peur, rappelle l'Adulte : quel est mon objectif, quel est le pire réaliste ? <span class="src">Berne · Partie I</span></p>
+    </article>
+    <article class="card">
+      <h3>Compare avec les faits</h3>
+      <p class="idea">Ton cerveau imagine d'abord le pire, parce que c'est ce qui lui revient vite en tête. Demande-toi : sur 10 personnes contactées, combien refusent poliment, et que me coûte vraiment un refus ? <span class="src">Kahneman · ch.7 et 12</span></p>
+    </article>
+    <article class="card">
+      <h3>Décide, puis agis franchement</h3>
+      <p class="idea">Doute avant d'agir, pas pendant. Une action hésitante marche moins bien qu'une action franche. <span class="src">Greene · loi 28</span> <span class="src">Goleman · ch.14</span></p>
+    </article>
+    <article class="card">
+      <h3>Monte par petits paliers</h3>
+      <p class="idea"><span class="src out">Hors livres : exposition progressive</span></p>
+      <ol class="ladder">
+        <li>Te parler à voix haute et t'enregistrer.</li>
+        <li>Parler à des inconnus sans enjeu (vendeur, voisin).</li>
+        <li>Écrire puis appeler un prospect.</li>
+        <li>Parler à un petit groupe, puis à un public.</li>
+      </ol>
+      <p class="note">Le défi de 30 jours suit cette échelle. Si la peur te bloque dans la vie de tous les jours, un psychologue peut t'aider : ce n'est pas une faiblesse.</p>
+    </article>
+  </div>
+</section>
+
+<section id="scripts">
+  <h2>Scripts prêts à l'emploi</h2>
+  <p class="sub">Remplace les [crochets] par des faits vrais et adapte le ton à la personne en face.</p>
+  <div class="grid">
+
+    <article class="card">
+      <div class="sch"><h3>1. Premier message à une PME</h3><button class="btn" type="button" data-copy="s1">Copier</button></div>
+      <p class="srow"><span class="src">Cialdini · ch.4 et 5</span> <span class="src">Heath · ch.3</span> <span class="src">Carnegie · Partie II</span></p>
+      <p class="script" id="s1">Bonjour [prénom ou M./Mme nom], je suis [ton prénom], [ton métier] à [ta ville]. J'ai remarqué que [un détail vrai sur leur activité, par exemple : vous prenez vos commandes par WhatsApp]. J'ai aidé [une entreprise du même type] à [résultat concret et vrai]. Puis-je vous montrer en 10 minutes comment faire de même ? Sans engagement.</p>
+      <p class="note">N'invente aucun résultat : ta réputation vaut plus qu'une vente (Greene, loi 5).</p>
+    </article>
+
+    <article class="card">
+      <div class="sch"><h3>2. Ouvrir une prise de parole</h3><button class="btn" type="button" data-copy="s2">Copier</button></div>
+      <p class="srow"><span class="src">Heath · ch.2</span> <span class="src">Kahneman · ch.26</span> <span class="src">Gladwell · ch.1</span></p>
+      <p class="script" id="s2">Combien de clients votre entreprise perd-elle chaque semaine sans le savoir ? [pause de 2 secondes] Aujourd'hui, je vais vous montrer d'où viennent ces pertes, et comment en récupérer une partie.</p>
+      <p class="note">Apprends cette première phrase par cœur : les premières secondes pèsent lourd.</p>
+    </article>
+
+    <article class="card">
+      <div class="sch"><h3>3. Annoncer ton prix</h3><button class="btn" type="button" data-copy="s3">Copier</button></div>
+      <p class="srow"><span class="src">Kahneman · ch.11</span> <span class="src">Greene · loi 4</span></p>
+      <p class="script" id="s3">Pour [résultat voulu par le client], l'investissement est de [prix]. Cela comprend [A], [B] et [C]. [silence de 3 secondes]</p>
+      <p class="note">Donne le prix avec calme, puis laisse l'autre répondre. Ne baisse pas le prix pendant le silence.</p>
+    </article>
+
+    <article class="card">
+      <div class="sch"><h3>4. Répondre à « c'est trop cher »</h3><button class="btn" type="button" data-copy="s4">Copier</button></div>
+      <p class="srow"><span class="src">Carnegie · Partie III</span> <span class="src">Cialdini · ch.2</span> <span class="src">Greene · loi 5</span></p>
+      <p class="script" id="s4">Je comprends. Trop cher par rapport à quoi ? … Je peux réduire le contenu pour rester dans votre budget, mais je ne baisse pas la qualité. Qu'est-ce qui est le plus important pour vous ?</p>
+      <p class="note">Tu réduis le contenu, pas ta valeur.</p>
+    </article>
+
+    <article class="card">
+      <div class="sch"><h3>5. Sortir d'un « oui, mais »</h3><button class="btn" type="button" data-copy="s5">Copier</button></div>
+      <p class="srow"><span class="src">Berne · Parties I et II</span></p>
+      <p class="script" id="s5">Qu'est-ce qui, selon vous, fonctionnerait dans votre situation ?</p>
+      <p class="note">Arrête de proposer des solutions. Demande l'avis de l'autre : vous passez en mode Adulte à Adulte.</p>
+    </article>
+
+    <article class="card">
+      <div class="sch"><h3>6. Relancer sans insister</h3><button class="btn" type="button" data-copy="s6">Copier</button></div>
+      <p class="srow"><span class="src">Cialdini · ch.3</span> <span class="src">Carnegie · Partie I</span></p>
+      <p class="script" id="s6">Bonjour [prénom], je reviens vers vous au sujet de ma proposition. Avez-vous pu la voir ? Si le moment n'est pas bon, dites-le-moi simplement : je vous recontacterai le [date].</p>
+      <p class="note">Une date précise rend la suite claire pour tous les deux.</p>
+    </article>
+
+    <article class="card">
+      <div class="sch"><h3>7. Dire non en gardant la relation</h3><button class="btn" type="button" data-copy="s7">Copier</button></div>
+      <p class="srow"><span class="src">Carnegie · Parties I et III</span> <span class="src">Greene · loi 5</span></p>
+      <p class="script" id="s7">Merci de votre confiance. À ces conditions, je ne peux pas garantir la qualité que je vous dois. Voici ce que je peux faire : [option].</p>
+      <p class="note">Un non clair, poli, avec une alternative, protège ta réputation.</p>
+    </article>
+
+    <article class="card">
+      <div class="sch"><h3>8. Reformuler pour montrer que tu écoutes</h3><button class="btn" type="button" data-copy="s8">Copier</button></div>
+      <p class="srow"><span class="src">Goleman · ch.7</span> <span class="src">Carnegie · Partie II</span></p>
+      <p class="script" id="s8">Si je comprends bien, ce qui compte le plus pour vous, c'est [X], et ce qui vous inquiète, c'est [Y]. C'est bien ça ?</p>
+      <p class="note">À utiliser avant de répondre à toute objection.</p>
+    </article>
+
+  </div>
+</section>
+
+<section id="defi">
+  <h2>Défi de 30 jours</h2>
+  <p class="sub">Une action par jour (10 à 20 minutes) et une routine de 3 minutes. Coche au fur et à mesure. Les jours montent par paliers, du plus facile au plus exposé.</p>
+
+  <article class="card">
+    <h3>Routine de 3 minutes, chaque jour</h3>
+    <ul class="tech">
+      <li>6 respirations lentes (inspire 4 secondes, expire 6 secondes).</li>
+      <li>Ta phrase d'ouverture préparée, dite une fois à voix haute.</li>
+      <li>Une victoire du jour, notée en une ligne.</li>
+    </ul>
+  </article>
+
+  <div class="dash">
+    <div class="card">
+      <h3>Ta progression</h3>
+      <div class="bar" id="bar" role="progressbar" aria-label="Cases cochées" aria-valuemin="0" aria-valuemax="60" aria-valuenow="0"><span id="barFill"></span></div>
+      <div class="stats">
+        <span><b id="stPct">0 %</b>des cases</span>
+        <span><b id="stDays">0/30</b>jours validés</span>
+        <span><b id="stRun">0</b>jours d'affilée (record)</span>
+      </div>
+      <p class="sync" id="sync">Ta progression s'enregistre automatiquement.</p>
+    </div>
+    <div class="card">
+      <h3>Ma peur de parler</h3>
+      <div class="fear">
+        <label for="fearStart">Au jour 1 (0 à 10)<input id="fearStart" type="number" min="0" max="10" step="1" inputmode="numeric"></label>
+        <label for="fearEnd">Au jour 30 (0 à 10)<input id="fearEnd" type="number" min="0" max="10" step="1" inputmode="numeric"></label>
+      </div>
+      <p class="delta" id="fearDelta"></p>
+    </div>
+  </div>
+
+  <div id="weeks"></div>
+
+  <div class="reset">
+    <button class="btn dng" type="button" id="resetAsk">Remettre à zéro</button>
+    <span id="resetBox" hidden>
+      <span>Effacer toute ta progression et tes notes ?</span>
+      <button class="btn dng" type="button" id="resetYes">Oui, effacer</button>
+      <button class="btn" type="button" id="resetNo">Annuler</button>
+    </span>
+  </div>
+</section>
+
+<section id="refs">
+  <h2>Références</h2>
+  <p class="sub">Pour retrouver chaque livre un jour. Les numéros de chapitre suivent l'édition originale anglaise et peuvent changer dans une édition française.</p>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>Livre</th><th>Auteur</th><th>Titre original</th><th>À lire d'abord</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Les deux vitesses de la pensée</td><td>Daniel Kahneman</td><td><i>Thinking, Fast and Slow</i> (2011)</td><td>ch.1, 5, 7, 11, 26, 34</td></tr>
+        <tr><td>Influence et manipulation</td><td>Robert Cialdini</td><td><i>Influence</i> (1984)</td><td>ch.2 à 7</td></tr>
+        <tr><td>Comment se faire des amis</td><td>Dale Carnegie</td><td><i>How to Win Friends and Influence People</i> (1936)</td><td>Parties II et III</td></tr>
+        <tr><td>Ces idées qui collent</td><td>Chip et Dan Heath</td><td><i>Made to Stick</i> (2007)</td><td>Introduction, ch.1, 3, 6</td></tr>
+        <tr><td>Les 48 lois du pouvoir</td><td>Robert Greene</td><td><i>The 48 Laws of Power</i> (1998)</td><td>lois 4, 5, 9, 13, 28, 29, 35</td></tr>
+        <tr><td>Blink : la force de l'intuition</td><td>Malcolm Gladwell</td><td><i>Blink</i> (2005)</td><td>ch.1, 3, 5, 6</td></tr>
+        <tr><td>Des jeux et des hommes</td><td>Eric Berne</td><td><i>Games People Play</i> (1964)</td><td>Partie I, puis les jeux de la Partie II</td></tr>
+        <tr><td>L'intelligence émotionnelle</td><td>Daniel Goleman</td><td><i>Emotional Intelligence</i> (1995)</td><td>ch.2, 4, 5, 7, 14</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="foot">Ce guide est un condensé personnel, rédigé de mémoire : ce n'est pas une citation des livres. Avant de citer un auteur ou un chiffre, vérifie dans le livre. Si un jour tu peux n'en lire que trois, commence par Cialdini, Carnegie et Heath : ce sont les plus utiles pour vendre et te faire comprendre.</p>
+</section>
+
+</main>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- données du défi ---------- */
+  var WEEKS=[
+    {n:1,from:1,to:7,t:"Semaine 1 · Se calmer et se connaître",g:"Tu apprends à reconnaître ta peur et à reprendre la main sur ton corps et tes réflexes."},
+    {n:2,from:8,to:14,t:"Semaine 2 · Écouter et se faire apprécier",g:"Tu passes de « bien parler » à « bien écouter », ce qui enlève une grande partie de la pression."},
+    {n:3,from:15,to:21,t:"Semaine 3 · Convaincre avec des messages qui restent",g:"Tu présentes ton offre simplement et tu utilises les leviers d'influence avec honnêteté."},
+    {n:4,from:22,to:30,t:"Semaine 4 · Négocier et passer à l'action",g:"Tu passes de la préparation à la pratique réelle : négociation, prospection, prise de parole."}
+  ];
+  var DAYS=[
+    {d:1,t:"Mesure ton point de départ",x:"Note ta peur de parler de 0 à 10 (case en haut de cette section). Écris les 3 situations qui te font le plus peur : appeler un inconnu, parler devant un groupe, demander un prix.",s:["Goleman · ch.4"]},
+    {d:2,t:"Respire et nomme",x:"Avant chaque conversation d'aujourd'hui : 6 respirations lentes. Puis dis à voix basse ce que tu ressens : « je suis tendu », « j'ai peur ».",s:["Goleman · ch.2 et 4","!Respiration : hors livres"]},
+    {d:3,t:"Repère tes deux systèmes",x:"3 fois aujourd'hui, note si tu as réagi par réflexe (Système 1) ou en réfléchissant (Système 2). Exemple : une réponse sèche à un message.",s:["Kahneman · Partie I"]},
+    {d:4,t:"Qui parle en moi ?",x:"Écoute tes phrases : Parent (« tu dois », « il faut »), Enfant (« j'ai peur », « je veux »), Adulte (faits, options). Note 3 exemples.",s:["Berne · Partie I"]},
+    {d:5,t:"Trois petits contacts",x:"Salue et pose une question simple à 3 inconnus (vendeur, voisin, chauffeur). Souris, utilise le prénom si tu le connais.",s:["Carnegie · Partie II","!Exposition progressive : hors livres"]},
+    {d:6,t:"Enregistre-toi 60 secondes",x:"Présente-toi avec ton téléphone : qui tu es, ce que tu fais, pour qui. Réécoute : garde 1 chose, corrige 1 chose.",s:["Heath · ch.1","Gladwell · ch.1"]},
+    {d:7,t:"Bilan et pré-mortem",x:"Écris ton bilan de la semaine. Puis imagine que ton prochain contact important rate : pourquoi ? Prépare 1 action contre chaque cause.",s:["Kahneman · ch.24"]},
+
+    {d:8,t:"Règle du 80/20",x:"Dans une conversation, parle 20 % du temps. Pose 3 questions ouvertes (Comment ? Qu'est-ce qui ? Pourquoi ?) et laisse l'autre finir.",s:["Carnegie · Partie II"]},
+    {d:9,t:"Prénoms et compliments vrais",x:"Retiens et utilise le prénom de 3 personnes. Fais 3 compliments précis et sincères, sans flatterie.",s:["Carnegie · Parties I et II"]},
+    {d:10,t:"Reformule avant de répondre",x:"Dans 2 conversations, commence ta réponse par « Si je comprends bien… » et vérifie que l'autre dit oui.",s:["Goleman · ch.7","Carnegie · Partie II"]},
+    {d:11,t:"Lis sans conclure",x:"Observe 5 minutes le ton, le visage, la posture de quelqu'un. Note ce que tu crois lire, puis vérifie par une question : « On dirait que ça vous préoccupe ? »",s:["Gladwell · ch.7","Goleman · ch.8"]},
+    {d:12,t:"Journée sans critique",x:"Ni critique, ni plainte, ni reproche aujourd'hui. Note chaque fois que tu en as eu envie et ce que tu as dit à la place.",s:["Carnegie · Partie I"]},
+    {d:13,t:"Repère un jeu",x:"Trouve une conversation où tu entends « Oui, mais… » ou où tu ressens toujours la même gêne. Sors du jeu par une question d'Adulte : « Qu'est-ce qui marcherait selon vous ? »",s:["Berne · Parties I et II"]},
+    {d:14,t:"Bilan et 10 minutes qui comptent",x:"Écris ton bilan. Puis passe 10 minutes avec quelqu'un que tu veux mieux connaître (prospect, mentor) et applique la règle du 80/20.",s:["Carnegie · Partie II"]},
+
+    {d:15,t:"Ton message en une phrase",x:"Écris en une phrase ce que tu apportes à une PME. Test : un client pressé le comprend en 10 secondes.",s:["Heath · ch.1"]},
+    {d:16,t:"Rends-le concret",x:"Remplace chaque mot abstrait (« digitaliser », « optimiser ») par une image ou un chiffre : « votre client commande à 22 h depuis son téléphone ».",s:["Heath · ch.3"]},
+    {d:17,t:"Une histoire avant/après",x:"Écris 5 phrases : un client, son problème, ce qui a changé, le résultat. Raconte-la 2 fois à voix haute.",s:["Heath · ch.6"]},
+    {d:18,t:"Donne d'abord",x:"Offre quelque chose d'utile à 2 personnes sans rien demander : un conseil, un mini-diagnostic, une ressource.",s:["Cialdini · ch.2"]},
+    {d:19,t:"Prépare tes preuves",x:"Rassemble 3 preuves vraies : un résultat chiffré, un témoignage, un exemple local. Ajoute-les à ton message, sans exagérer.",s:["Cialdini · ch.4 et 6"]},
+    {d:20,t:"Un petit oui par écrit",x:"Demande un petit pas précis (« 10 minutes jeudi à 15 h ? ») et fais-le confirmer par message écrit.",s:["Cialdini · ch.3"]},
+    {d:21,t:"Bilan et cadrage du prix",x:"Écris ton bilan. Puis réécris ton offre : d'abord ce que coûte de ne rien changer, ensuite le gain, avec ton prix annoncé en premier.",s:["Kahneman · ch.11 et 34"]},
+
+    {d:22,t:"Prépare une négociation",x:"Écris ton objectif, ton minimum, ton plan B, ce que l'autre veut vraiment et ce qu'il perd s'il ne conclut pas.",s:["Greene · loi 29","Kahneman · ch.11"]},
+    {d:23,t:"Dis moins, laisse le silence",x:"Dans 3 conversations, dis ton prix ou ta question, puis tais-toi 3 secondes. Note ce qui se passe.",s:["Greene · loi 4"]},
+    {d:24,t:"Répétition générale",x:"Demande à un proche de jouer un client qui dit « c'est trop cher ». Fais 3 tours avec les scripts 4 et 8.",s:["Carnegie · Partie III","Cialdini · ch.2"]},
+    {d:25,t:"Tes 3 règles de réputation",x:"Écris 3 règles non négociables (tenir parole, respecter les délais, être honnête sur ce que tu sais faire) et applique-en une aujourd'hui.",s:["Greene · loi 5"]},
+    {d:26,t:"Décide, puis agis",x:"Envoie 3 messages de prospection (script 1) sans attendre le moment parfait. Décide d'abord, puis exécute sans douter.",s:["Greene · loi 28"]},
+    {d:27,t:"Un vrai rendez-vous",x:"Appelle ou rencontre un prospect. Suis les 5 C : Calme, Comprendre, Cadrer, Communiquer, Conclure.",s:["Tous les livres"]},
+    {d:28,t:"Relance poliment",x:"Relance les contacts restés sans réponse (script 6). Note les réponses et ce que tu en apprends.",s:["Cialdini · ch.3","Greene · loi 35"]},
+    {d:29,t:"Parle devant un groupe",x:"3 minutes devant des proches, une communauté ou en vidéo : 1 idée, 1 histoire, 1 demande.",s:["Heath · ch.1 et 6","Carnegie · Partie II"]},
+    {d:30,t:"Bilan final",x:"Note ta peur de 0 à 10 (case en haut). Relis tes bilans, liste 5 victoires, choisis tes 3 techniques les plus utiles et fixe 1 objectif chiffré pour le mois suivant.",s:["Tous les livres"]}
+  ];
+  var TOTAL=DAYS.length*2;
+
+  /* ---------- rendu ---------- */
+  function srcHtml(list){
+    return list.map(function(s){
+      var o=s.charAt(0)==="!";
+      return '<span class="src'+(o?' out':'')+'">'+(o?s.slice(1):s)+'</span>';
+    }).join(' ');
+  }
+  var weeksEl=document.getElementById('weeks');
+  weeksEl.innerHTML=WEEKS.map(function(w){
+    var days=DAYS.filter(function(d){return d.d>=w.from&&d.d<=w.to;});
+    return '<div class="week">'+
+      '<div class="whead"><h3>'+w.t+'</h3><span class="wcount" data-wc="'+w.n+'"></span></div>'+
+      '<p class="wgoal">'+w.g+'</p>'+
+      '<ol class="days">'+days.map(function(d){
+        return '<li class="day" data-day="'+d.d+'">'+
+          '<span class="dnum">J'+d.d+'</span>'+
+          '<label class="act" for="a'+d.d+'"><input type="checkbox" id="a'+d.d+'" data-k="a'+d.d+'"><span><b>'+d.t+'</b>'+d.x+'<span class="srcs">'+srcHtml(d.s)+'</span></span></label>'+
+          '<label class="rt" for="r'+d.d+'"><input type="checkbox" id="r'+d.d+'" data-k="r'+d.d+'"><span>Routine 3 min</span></label>'+
+        '</li>';
+      }).join('')+'</ol>'+
+      '<label class="nlab" for="w'+w.n+'">Mon bilan de la semaine : ce que j\'ai appris, ce qui m\'a fait peur, ma victoire</label>'+
+      '<textarea id="w'+w.n+'" data-n="w'+w.n+'" rows="3"></textarea>'+
+    '</div>';
+  }).join('');
+
+  var rows={};
+  Array.prototype.forEach.call(document.querySelectorAll('.day'),function(el){rows[el.getAttribute('data-day')]=el;});
+
+  /* ---------- état ---------- */
+  var LS_KEY="gpb-progress-v1";
+  var state=normalize(null);
+  var ref=null, lsOk=true;
+
+  function normalize(o){
+    var s={c:{},n:{},f:{s:null,e:null},t:0};
+    if(o&&typeof o==="object"){
+      if(o.c&&typeof o.c==="object"){
+        Object.keys(o.c).forEach(function(k){if(o.c[k]===true&&/^[ar]\d{1,2}$/.test(k))s.c[k]=true;});
+      }
+      if(o.n&&typeof o.n==="object"){
+        Object.keys(o.n).forEach(function(k){if(/^w[1-4]$/.test(k)&&typeof o.n[k]==="string")s.n[k]=o.n[k].slice(0,4000);});
+      }
+      if(o.f&&typeof o.f==="object"){
+        ["s","e"].forEach(function(k){
+          var raw=o.f[k];
+          if(raw!==null&&raw!==undefined&&raw!==""){
+            var v=Number(raw);
+            if(isFinite(v)&&v>=0&&v<=10)s.f[k]=v;
+          }
+        });
+      }
+      s.t=Number(o.t)||0;
+    }
+    return s;
+  }
+  function loadLocal(){
+    try{
+      var raw=localStorage.getItem(LS_KEY);
+      if(raw)state=normalize(JSON.parse(raw));
+    }catch(e){lsOk=false;}
+  }
+  function saveLocal(){
+    try{localStorage.setItem(LS_KEY,JSON.stringify(state));}catch(e){lsOk=false;}
+  }
+
+  /* ---------- affichage ---------- */
+  function weekOf(d){
+    for(var i=0;i<WEEKS.length;i++){if(d>=WEEKS[i].from&&d<=WEEKS[i].to)return WEEKS[i].n;}
+    return 1;
+  }
+  function refresh(){
+    var checks=0,acts=0,run=0,best=0,wa={},wt={};
+    DAYS.forEach(function(d){
+      var a=!!state.c["a"+d.d], r=!!state.c["r"+d.d], w=weekOf(d.d);
+      wt[w]=(wt[w]||0)+1;
+      if(a){acts++;run++;wa[w]=(wa[w]||0)+1;if(run>best)best=run;}else{run=0;}
+      if(a)checks++;
+      if(r)checks++;
+      if(rows[d.d])rows[d.d].classList.toggle("done",a);
+    });
+    WEEKS.forEach(function(w){
+      var el=document.querySelector('[data-wc="'+w.n+'"]');
+      if(el)el.textContent=(wa[w.n]||0)+"/"+wt[w.n]+" jours validés";
+    });
+    document.getElementById("pill").textContent=checks+"/"+TOTAL;
+    document.getElementById("barFill").style.width=(checks/TOTAL*100)+"%";
+    document.getElementById("bar").setAttribute("aria-valuenow",String(checks));
+    document.getElementById("stPct").textContent=Math.round(checks/TOTAL*100)+" %";
+    document.getElementById("stDays").textContent=acts+"/"+DAYS.length;
+    document.getElementById("stRun").textContent=String(best);
+    var fd=document.getElementById("fearDelta");
+    if(state.f.s!==null&&state.f.e!==null){
+      var diff=state.f.e-state.f.s;
+      fd.textContent="Écart entre le jour 1 et le jour 30 : "+(diff>0?"+":"")+diff+" point"+(Math.abs(diff)>1?"s":"")+".";
+    }else{
+      fd.textContent="";
+    }
+  }
+  function applyState(){
+    Array.prototype.forEach.call(document.querySelectorAll('input[data-k]'),function(el){
+      el.checked=!!state.c[el.getAttribute("data-k")];
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('textarea[data-n]'),function(el){
+      el.value=state.n[el.getAttribute("data-n")]||"";
+    });
+    document.getElementById("fearStart").value=state.f.s===null?"":state.f.s;
+    document.getElementById("fearEnd").value=state.f.e===null?"":state.f.e;
+    refresh();
+  }
+
+  /* ---------- sauvegarde sur le compte ---------- */
+  var writing=false, again=false, timer=null;
+  function queueRemote(){
+    if(!ref)return;
+    clearTimeout(timer);
+    timer=setTimeout(flush,700);
+  }
+  function flush(){
+    if(!ref)return;
+    if(writing){again=true;return;}
+    writing=true;
+    var body={c:state.c,n:state.n,f:state.f,t:state.t};
+    ref.set(body).then(function(){},function(){}).then(function(){
+      writing=false;
+      if(again){again=false;flush();}
+    });
+  }
+  function touch(){
+    state.t=Date.now();
+    saveLocal();
+    refresh();
+    queueRemote();
+  }
+  function setSync(txt){document.getElementById("sync").textContent=txt;}
+
+  async function initDb(){
+    try{
+      if(!window.claude||!window.claude.use){setSync(lsOk?"Sauvegarde sur cet appareil seulement.":"La sauvegarde n'est pas disponible ici.");return;}
+      var db=await window.claude.use("db");
+      var user=await window.claude.use("user");
+      if(!db||!user){setSync(lsOk?"Sauvegarde sur cet appareil seulement.":"La sauvegarde n'est pas disponible ici.");return;}
+      var id=await user.id();
+      if(!id){setSync(lsOk?"Sauvegarde sur cet appareil seulement.":"La sauvegarde n'est pas disponible ici.");return;}
+      var r=db.doc("data/users/"+id+"/progress");
+      var snap=await r.get();
+      if(snap.exists){
+        var remote=normalize(snap.data());
+        if(remote.t>state.t){state=remote;applyState();saveLocal();}
+        else if(state.t>remote.t){ref=r;queueRemote();}
+      }else if(state.t>0){
+        ref=r;queueRemote();
+      }
+      ref=r;
+      setSync("Sauvegarde sur ton compte activée : tu retrouves ta progression sur tes autres appareils.");
+    }catch(e){
+      setSync(lsOk?"Sauvegarde sur cet appareil seulement.":"La sauvegarde n'est pas disponible ici.");
+    }
+  }
+
+  /* ---------- événements ---------- */
+  weeksEl.addEventListener("change",function(e){
+    var t=e.target;
+    if(t&&t.matches&&t.matches('input[type="checkbox"][data-k]')){
+      var k=t.getAttribute("data-k");
+      if(t.checked)state.c[k]=true;else delete state.c[k];
+      touch();
+    }
+  });
+  weeksEl.addEventListener("input",function(e){
+    var t=e.target;
+    if(t&&t.matches&&t.matches("textarea[data-n]")){
+      state.n[t.getAttribute("data-n")]=t.value;
+      touch();
+    }
+  });
+  [["fearStart","s"],["fearEnd","e"]].forEach(function(p){
+    document.getElementById(p[0]).addEventListener("input",function(e){
+      var v=e.target.value;
+      if(v===""){state.f[p[1]]=null;}
+      else{
+        var n=Math.round(Number(v));
+        state.f[p[1]]=isFinite(n)?Math.max(0,Math.min(10,n)):null;
+      }
+      touch();
+    });
+  });
+  var resetBox=document.getElementById("resetBox"), resetAsk=document.getElementById("resetAsk");
+  resetAsk.addEventListener("click",function(){resetBox.hidden=false;resetAsk.hidden=true;});
+  document.getElementById("resetNo").addEventListener("click",function(){resetBox.hidden=true;resetAsk.hidden=false;});
+  document.getElementById("resetYes").addEventListener("click",function(){
+    state=normalize({t:Date.now()});
+    applyState();saveLocal();queueRemote();
+    resetBox.hidden=true;resetAsk.hidden=false;
+  });
+
+  /* copier les scripts */
+  Array.prototype.forEach.call(document.querySelectorAll("[data-copy]"),function(btn){
+    btn.addEventListener("click",async function(){
+      var el=document.getElementById(btn.getAttribute("data-copy"));
+      var txt=el.textContent.trim(), ok=false;
+      try{await navigator.clipboard.writeText(txt);ok=true;}
+      catch(err){
+        try{
+          var range=document.createRange();range.selectNodeContents(el);
+          var sel=window.getSelection();sel.removeAllRanges();sel.addRange(range);
+        }catch(e2){}
+      }
+      btn.textContent=ok?"Copié":"Texte sélectionné";
+      setTimeout(function(){btn.textContent="Copier";},1800);
+    });
+  });
+
+  /* navigation */
+  var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  Array.prototype.forEach.call(document.querySelectorAll("a[data-t]"),function(a){
+    a.addEventListener("click",function(e){
+      var target=document.getElementById(a.getAttribute("data-t"));
+      if(target){e.preventDefault();target.scrollIntoView({behavior:reduce?"auto":"smooth",block:"start"});}
+    });
+  });
+  if("IntersectionObserver" in window){
+    var links=Array.prototype.slice.call(document.querySelectorAll(".links a"));
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){
+          links.forEach(function(l){
+            var on=l.getAttribute("data-t")===en.target.id;
+            l.classList.toggle("on",on);
+            if(on)l.setAttribute("aria-current","true");else l.removeAttribute("aria-current");
+          });
+        }
+      });
+    },{rootMargin:"-20% 0px -70% 0px"});
+    Array.prototype.forEach.call(document.querySelectorAll("main section[id]"),function(s){io.observe(s);});
+  }
+
+  /* démarrage */
+  loadLocal();
+  applyState();
+  initDb();
+})();
+</script>
+
+</body></html>
